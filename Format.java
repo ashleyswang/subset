@@ -1,3 +1,5 @@
+// Formatting Code
+
 import java.util.Scanner;
 
 public class format{
