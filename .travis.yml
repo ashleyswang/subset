@@ -1,3 +1,1 @@
-matrix: 
-	include:
-		- language: Gradle
+language: Java
