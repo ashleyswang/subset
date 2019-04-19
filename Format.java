@@ -13,11 +13,13 @@ public class Format{
 	forloop[1] = false;
 	for(int j = 0; j <t.length(); j++){
 		char ch = t.charAt(j);
+		// for loops
 		if(ch == 'f' && t.charAt(j+1) == 'o' && t.charAt(j+2) == 'r' && (t.charAt(j+3) == '('
 		|| t.charAt(j+3) == ' ')){
 			forloop[0] = true;
 			forloop[1] = true;
 		}
+		// semi colons
 		if(ch == ';'){
 			if(forloop[0] == true){
 				System.out.print(ch);
@@ -30,9 +32,16 @@ public class Format{
 			else{
 				System.out.print(ch);
 				System.out.println();
-				for(int i = 0; i < tabCounter; i++){
-				System.out.print("\t");
-			}
+				if (t.charAt(j+1) != '}'){
+				    for(int i = 0; i < tabCounter; i++){
+					System.out.print("\t");
+				    }
+				}
+				else {
+				    for(int i=0; i < tabCounter-1; i++){
+					System.out.print("\t");
+				    }
+				}
 			}
 		}
 		else if(ch == '{'){
@@ -44,9 +53,11 @@ public class Format{
 			}
 		}
 		else if(ch == '}'){
+		    /*
 			if(t.charAt(j-1) != '}' && t.charAt(j-1) != ';' && t.charAt(j-1) != ' '){
-				System.out.println();
+			    System.out.println();
 			}
+		    */
 			tabCounter--;
 			if(t.charAt(j-1) == '}'){
 				for(int i = 0; i < tabCounter; i++){
