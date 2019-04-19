@@ -1,12 +1,11 @@
-// Formatting Code
-
 import java.util.Scanner;
 
-public class format{
+public class Format{
 	public static void main(String[] args){
 	Scanner s = new Scanner(System.in);
 	System.out.print("Enter a one liner: ");
 	String t = s.nextLine();
+	t+= ' ';
 	int tabCounter = 0;
 	boolean[] forloop;
 	forloop = new boolean[2];
@@ -31,6 +30,9 @@ public class format{
 			else{
 				System.out.print(ch);
 				System.out.println();
+				for(int i = 0; i < tabCounter; i++){
+				System.out.print("\t");
+			}
 			}
 		}
 		else if(ch == '{'){
@@ -46,17 +48,23 @@ public class format{
 				System.out.println();
 			}
 			tabCounter--;
-			for(int i = 0; i < tabCounter; i++){
-				System.out.print("\t");
+			if(t.charAt(j-1) == '}'){
+				for(int i = 0; i < tabCounter; i++){
+					System.out.print("\t");
 			}
 			System.out.println('}');
+			if(t.charAt(j+1) != '}'){
+				for(int i = 0; i < tabCounter; i++){
+					System.out.print("\t");
+				}
+			}
 		}
 		else{
 			System.out.print(ch);
 		}
 	}
 
-	System.out.println();
+	//System.out.println();
 
 }
 
