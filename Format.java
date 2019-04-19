@@ -51,6 +51,7 @@ public class Format{
 			if(t.charAt(j-1) == '}'){
 				for(int i = 0; i < tabCounter; i++){
 					System.out.print("\t");
+				}
 			}
 			System.out.println('}');
 			if(t.charAt(j+1) != '}'){
