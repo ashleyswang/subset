@@ -7,6 +7,7 @@ public class Format{
 	String t = s.nextLine();
 	t+= ' ';
 	int tabCounter = 0;
+	boolean comment = false;
 	boolean[] forloop;
 	forloop = new boolean[2];
 	forloop[0] = false;
@@ -18,9 +19,29 @@ public class Format{
 		|| t.charAt(j+3) == ' ')){
 			forloop[0] = true;
 			forloop[1] = true;
+			System.out.print("f");
+		}
+		// one line comments
+		else if(ch == '/' && t.charAt(j+1) == '/'){
+		    comment = true;
+		    System.out.print("/");
+		}
+		else if(ch == '\\' && t.charAt(j+1) == 'n'){
+		    if (comment){
+			System.out.print('\n');
+			for(int i = 0; i < tabCounter; i++){
+			    System.out.print("\t");
+			}
+		    }
+		    j++;
+		}
+		else if(ch == ' '){
+		    if (!(t.charAt(j-1) == ';') && !(t.charAt(j-2) == '\\' && t.charAt(j-1) == 'n')){
+			System.out.print(" ");
+		    }
 		}
 		// semi colons
-		if(ch == ';'){
+		else if(ch == ';'){
 			if(forloop[0] == true){
 				System.out.print(ch);
 				forloop[0] = false;
