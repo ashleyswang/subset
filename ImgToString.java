@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.*;
 
 public class ImgToString{
 
@@ -124,9 +125,22 @@ public class ImgToString{
 
     }
 
-    public void exportAs(String outfile){
-	// file io here
-	// outfile is name of the file it is exported to
+    public void exportAs(String outfile) throws IOException {
+	// outfile is the name of the file to be downloaded from user
+
+	FileOutputStream f = null;
+
+	try{
+	    f = new FileOutputStream(outfile);
+
+	    for(char ch: formattedCode.toCharArray()){
+		f.write(ch);
+	    }
+	} finally {
+	    if (f != null){
+		f.close();
+	    }
+	}
     }
     
 }
