@@ -1,8 +1,9 @@
 import java.util.Scanner;
 
+// completed
 public class Format{
 	
-	String formatText(String unformatted){
+	public String formatText(String unformatted){
 		String formatted = new String();
 		unformatted += " ";
 		int tabCounter = 0;
