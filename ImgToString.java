@@ -5,8 +5,7 @@ public class ImgToString{
     protected String filePathway = new String();
     protected String unformattedCode = new String();
     // private String formattedCode = new String();
-    protected String outputType = new String();
-    private TextDetection textdetectionAPI = new TextDetection();
+    protected TextDetection textdetectionAPI = new TextDetection();
 
     // Constructor
     public ImgToString(){};
