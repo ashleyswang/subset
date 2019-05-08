@@ -1,104 +1,101 @@
 import java.util.Scanner;
 
 public class Format{
-	public static void main(String[] args){
-	Scanner s = new Scanner(System.in);
-	System.out.print("Enter a one liner: ");
-	String t = s.nextLine();
-	t+= ' ';
-	int tabCounter = 0;
-	boolean comment = false;
-	boolean[] forloop;
-	forloop = new boolean[2];
-	forloop[0] = false;
-	forloop[1] = false;
-	for(int j = 0; j <t.length(); j++){
-		char ch = t.charAt(j);
-		// for loops
-		if(ch == 'f' && t.charAt(j+1) == 'o' && t.charAt(j+2) == 'r' && (t.charAt(j+3) == '('
-		|| t.charAt(j+3) == ' ')){
-			forloop[0] = true;
-			forloop[1] = true;
-			System.out.print("f");
-		}
-		// one line comments
-		else if(ch == '/' && t.charAt(j+1) == '/'){
-		    comment = true;
-		    System.out.print("/");
-		}
-		else if(ch == '\\' && t.charAt(j+1) == 'n'){
-		    if (comment){
-			System.out.print('\n');
-			for(int i = 0; i < tabCounter; i++){
-			    System.out.print("\t");
+	
+	String formatText(String unformatted){
+		String formatted = new String();
+		unformatted += " ";
+		int tabCounter = 0;
+		boolean comment = false;
+		boolean[] forloop;
+		forloop = new boolean[2];
+		forloop[0] = false;
+		forloop[1] = false;
+		for(int j = 0; j <unformatted.length(); j++){
+			char ch = unformatted.charAt(j);
+			// for loops
+			if(ch == 'f' && unformatted.charAt(j+1) == 'o' && unformatted.charAt(j+2) == 'r' && (unformatted.charAt(j+3) == '('
+			|| unformatted.charAt(j+3) == ' ')){
+				forloop[0] = true;
+				forloop[1] = true;
+				formatted+="f";
 			}
-		    }
+			// one line comments
+			else if(ch == '/' && unformatted.charAt(j+1) == '/'){
+		    	comment = true;
+		    	formatted+="/";
+			}
+			else if(ch == '\\' && unformatted.charAt(j+1) == 'n'){
+		    	if (comment){
+					formatted+='\n';
+					for(int i = 0; i < tabCounter; i++){
+			    		formatted+="\t";
+					}
+		    	}
 		    j++;
-		}
-		else if(ch == ' '){
-		    if (!(t.charAt(j-1) == ';') && !(t.charAt(j-2) == '\\' && t.charAt(j-1) == 'n')){
-			System.out.print(" ");
-		    }
-		}
-		// semi colons
-		else if(ch == ';'){
-			if(forloop[0] == true){
-				System.out.print(ch);
-				forloop[0] = false;
 			}
-			else if(forloop[1] == true){
-				System.out.print(ch);
-				forloop[1] = false;
+			else if(ch == ' '){
+		    	if (!(unformatted.charAt(j-1) == ';') && !(unformatted.charAt(j-2) == '\\' && unformatted.charAt(j-1) == 'n')){
+					formatted+=" ";
+		    	}
+			}
+			// semi colons
+			else if(ch == ';'){
+				if(forloop[0] == true){
+					formatted+=ch;
+					forloop[0] = false;
+				}
+				else if(forloop[1] == true){
+					formatted+=ch;
+					forloop[1] = false;
+				}
+				else{
+					formatted+=ch;
+					formatted+="\n";
+					if (unformatted.charAt(j+1) != '}'){
+					    for(int i = 0; i < tabCounter; i++){
+						formatted+="\t";
+					    }
+					}
+					else {
+					    for(int i=0; i < tabCounter-1; i++){
+						formatted+="\t";
+					    }
+					}
+				}
+			}
+			else if(ch == '{'){
+				tabCounter++;
+				formatted+="{";
+				formatted+="\n";
+				for(int i = 0; i < tabCounter; i++){
+					formatted+="\t";
+				}
+			}
+			else if(ch == '}'){
+			    /*
+				if(unformatted.charAt(j-1) != '}' && unformatted.charAt(j-1) != ';' && unformatted.charAt(j-1) != ' '){
+				    System.ouunformatted.println();
+				}
+			    */
+				tabCounter--;
+				if(unformatted.charAt(j-1) == '}'){
+					for(int i = 0; i < tabCounter; i++){
+						formatted+="\t";
+					}
+				}
+				formatted+="}";
+				if(unformatted.charAt(j+1) != '}'){
+					for(int i = 0; i < tabCounter; i++){
+						formatted+="\t";
+					}
+				}
 			}
 			else{
-				System.out.print(ch);
-				System.out.println();
-				if (t.charAt(j+1) != '}'){
-				    for(int i = 0; i < tabCounter; i++){
-					System.out.print("\t");
-				    }
-				}
-				else {
-				    for(int i=0; i < tabCounter-1; i++){
-					System.out.print("\t");
-				    }
-				}
+				formatted+=ch;
 			}
 		}
-		else if(ch == '{'){
-			tabCounter++;
-			System.out.print("{");
-			System.out.println();
-			for(int i = 0; i < tabCounter; i++){
-				System.out.print("\t");
-			}
-		}
-		else if(ch == '}'){
-		    /*
-			if(t.charAt(j-1) != '}' && t.charAt(j-1) != ';' && t.charAt(j-1) != ' '){
-			    System.out.println();
-			}
-		    */
-			tabCounter--;
-			if(t.charAt(j-1) == '}'){
-				for(int i = 0; i < tabCounter; i++){
-					System.out.print("\t");
-				}
-			}
-			System.out.println('}');
-			if(t.charAt(j+1) != '}'){
-				for(int i = 0; i < tabCounter; i++){
-					System.out.print("\t");
-				}
-			}
-		}
-		else{
-			System.out.print(ch);
-		}
+		return formatted;
 	}
-
-	//System.out.println();
-
-}
 
 }
