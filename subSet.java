@@ -3,7 +3,9 @@ import java.io.*;
 
 
 public class subSet{
-	public static void main(String[] args){
+    public static void main(String[] args){
+
+	    /*
 		// File file = new File("/Users/evanaltshule/Documents/UCSB/spring19/cs48/Project/subset/formatTest.txt");
 		// ImgToString output = new ImgToString(file.getPath());
 		// output.format(output.getFilePathway());
@@ -33,4 +35,16 @@ public class subSet{
 
 
 	}
+	    */
+
+	Scanner s = new Scanner(System.in);
+	System.out.println("Enter image file pathway. If file is in current directly, add \"./\" before your file name.");
+	String filePathway = new String(s.next());
+
+	ImgToString test = new ImgToFormattedString(filePathway);
+	test.setOutputType(".java");
+	test.exportAs();
+
+	System.out.println("File output completed under outfile.java");
+    }
 }
