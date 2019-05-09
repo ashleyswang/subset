@@ -37,14 +37,19 @@ public class subSet{
 	}
 	    */
 
-	Scanner s = new Scanner(System.in);
-	System.out.println("Enter image file pathway. If file is in current directly, add \"./\" before your file name.");
-	String filePathway = new String(s.next());
 
-	ImgToString test = new ImgToFormattedString(filePathway);
-	test.setOutputType(".java");
-	test.exportAs();
+		Scanner s = new Scanner(System.in);
+		System.out.println("Enter image file pathway. If file is in current directly, add \"./\" before your file name.");
 
-	System.out.println("File output completed under outfile.java");
+		String filePathway = new String(s.next());
+		System.out.print("File name: \"");
+		System.out.print(filePathway);
+		System.out.println("\"");
+
+		ImgToString test = new ImgToFormattedString(filePathway);
+		test.setOutputType(".java");
+		test.exportAs();
+
+		System.out.println("File output completed under outfile.java");
     }
 }

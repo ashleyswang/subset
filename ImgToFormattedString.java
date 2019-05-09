@@ -9,7 +9,7 @@ public class ImgToFormattedString extends ImgToString{
     // Constructor
     public ImgToFormattedString(){};
     public ImgToFormattedString(String filePathway){
-	this.filePathway = filePathway;
+        this.filePathway = filePathway;
     }
 
     // Getter
@@ -17,35 +17,40 @@ public class ImgToFormattedString extends ImgToString{
     
     // Setter
     public void setOutputType(String s){
-    	if (s.equals(".java") || s.equals(".cpp"))
-    		outputType = s;
-    	else
-    		System.out.println("Not .java or .cpp file. Use ImgToString class.");
-    		return;
+        if (s.equals(".java") || s.equals(".cpp"))
+            outputType = s;
+        else
+            System.out.println("Not .java or .cpp file. Use ImgToString class.");
+            return;
     }
 
-    public void exportAs() throws IOException {
-		// outfile is the name of the file to be downloaded from user
-		
-		PrintWriter outfile = null;
-		unformattedCode = textdetectionAPI.detectText(filePathway);
-		formattedCode = formatting.formatText(unformattedCode);
-		try{
-			if (outputType.equals(".java")){
-				outfile = new PrintWriter("outfile.java");
-			} else if (outputType.equals(".cpp")){
-				outfile = new PrintWriter("outfile.cpp");
-			}
-	    	for(char ch: unformattedCode.toCharArray()){
-				outfile.append(ch);
-	    	}
-	    } catch (FileNotFoundException e){
-			System.out.println(e.toString());
-		} finally {
-	    	if (outfile != null){
-				outfile.close();
-	    	}
-		}
+    public void exportAs(){
+        // outfile is the name of the file to be downloaded from user
+        
+        PrintWriter outfile = null;
+        // unformattedCode = textdetectionAPI.detectText(filePathway);
+        // formattedCode = formatting.formatText(unformattedCode);
+        try{
+            unformattedCode = textdetectionAPI.detectText(filePathway);
+            formattedCode = formatting.formatText(unformattedCode);
+
+            if (outputType.equals(".java")){
+                outfile = new PrintWriter("outfile.java");
+            } else if (outputType.equals(".cpp")){
+                outfile = new PrintWriter("outfile.cpp");
+            }
+            for(char ch: unformattedCode.toCharArray()){
+                outfile.append(ch);
+            }
+        } catch (FileNotFoundException e){
+            System.out.println(e.toString());
+        } catch (Exception e){
+            System.out.println(" java is still being a bitch ");
+        } finally {
+            if (outfile != null){
+                outfile.close();
+            }
+        }
     }
     
 }
