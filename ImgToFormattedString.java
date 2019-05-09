@@ -12,6 +12,9 @@ public class ImgToFormattedString extends ImgToString{
 	this.filePathway = filePathway;
     }
 
+    // Getter
+    public String getOutputType(){ return outputType; }
+    
     // Setter
     public setOutputType(String s){
     	if (s.equals(".java") || s.equals(".cpp"))

@@ -16,7 +16,7 @@ public class ImgToString{
     // Getters
     public String getFilePathway(){ return filePathway; }
     public String getUnformatted(){ return unformattedCode; }
-    public String getOutputType(){ return outputType;}
+    // public String getOutputType(){ return outputType;}
 
     // Modifier
     public void setFilePathway(String s){ filePathway = new String(s);	}
