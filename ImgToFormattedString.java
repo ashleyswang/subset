@@ -16,11 +16,11 @@ public class ImgToFormattedString extends ImgToString{
     public String getOutputType(){ return outputType; }
     
     // Setter
-    public setOutputType(String s){
+    public void setOutputType(String s){
     	if (s.equals(".java") || s.equals(".cpp"))
     		outputType = s;
     	else
-    		System.out.println("Not .java or .cpp file. Use ImgToString class.")
+    		System.out.println("Not .java or .cpp file. Use ImgToString class.");
     		return;
     }
 
