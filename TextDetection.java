@@ -17,7 +17,7 @@ public class TextDetection {
 		return fullText;
 	}
 	
-	public void printText() throws Exception {
+	public void printText(String filePathway) throws Exception {
 		
 		String inputFilePath = "F:/Tesseract/English.tif"; //file with specified language data
 		
