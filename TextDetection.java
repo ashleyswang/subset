@@ -4,13 +4,13 @@ import java.io.File;
 
 public class TextDetection {
 
-	public String detectText() throws Exception {
+	public String detectText(String filePathway) throws Exception {
 		
 		String inputFilePath = "F:/Tesseract/English.tif"; //file with specified language data
 		
 		Tesseract tesseract = new Tesseract();
 		
-		tesseract.setDatapath("F:/Tesseract/"); //folder with image
+		tesseract.setDatapath(filePathway); //folder with image
 		
 		String fullText = tesseract.doOCR(new File(inputFilePath));
 		
@@ -23,7 +23,7 @@ public class TextDetection {
 		
 		Tesseract tesseract = new Tesseract();
 		
-		tesseract.setDatapath("F:/Tesseract/"); //folder with image
+		tesseract.setDatapath(filePathway); //folder with image
 		
 		String fullText = tesseract.doOCR(new File(inputFilePath));
 		
