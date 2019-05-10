@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Subset</title>
+    <script src="three.r92.min.js"></script>
+    <script src="vanta.net.min.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <link rel = "icon" type = "image/png" href = "evan.png">
+    <link rel = "stylesheet" href = "styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Neuton" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src =https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.4/ace.js></script>
+    <script src="sketch.js"></script>
+</head>
+<body id="body">
+    <p>{{subSet}}</p>
+    <div class = phrase>bridging the handwritten <br><br><br><br><br><br><br><br>
+        and online coding experience <br><br><br><br><br><br><br><br> with machine vision technology</div>
+    <a class = "link2" href = "https://github.com/ashleyswang/subset">Github</a>
+    <div class = contain>
+        <div class="upload-btn-wrapper">
+            <img id="output"/>
+            <label class="btn"><input id="file-upload" style= "display:none" type="file" accept="image/*">Upload a file</label>
+        </div>
+        <div id = "editor">Hi</div>
+    </div>
+    <script>
+        VANTA.NET({
+            el: "#body",
+            color: 0x20dae6,
+            backgroundColor: 0x433e4a,
+            points: 20.00,
+            maxDistance: 27.00,
+            spacing: 13.00
+        })
+    </script>
+
+</body>
+</html>
