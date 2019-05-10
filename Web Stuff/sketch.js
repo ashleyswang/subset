@@ -7,23 +7,21 @@ window.onload = function() {
         output.src = URL.createObjectURL(event.target.files[0]);//make one of these
         //download link 
         //javascript dynamic download
-        
-        var formdata = new FormData()
-        formdata.append('text', event.target.files[0], 'whatever.java')
-        jQuery.ajax({
-            url:  '/path/to/ocr',
-            data: formdata,
-            processData: false,
-            success: function(data, status, xhr) {
-                editor.setValue(data);
-                alert('Yay!')
-            },
-            error: function(data, status, xhr) {
-                $('#wrapper').show();
-                editor.setValue("This is some Java code!");
-                alert('Hey!')
-            }
-        })
+
+        var xhr = new XMLHttpRequest()
+        xhr.open('POST', 'http://localhost:8000/ocr')
+        xhr.onreadystatechange = function() {
+            if(this.readyState !== 4) return
+            var code = this.responseText
+            editor.setValue(code)
+        }
+
+        var reader = new FileReader();
+        reader.onload = function(e) { 
+            xhr.send(e.target.result) 
+        }
+
+        reader.readAsArrayBuffer(event.target.files[0])
     })
     
     $('#compile').on('click', function(event) {

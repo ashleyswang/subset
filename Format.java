@@ -27,18 +27,6 @@ public class Format{
 		formatted+="/";
 	    }
 	    // newline characters
-	    /*
-	    else if(ch == '\\' && unformatted.charAt(j+1) == 'n'){
-		if (comment){
-		    formatted+='\n';
-		    for(int i = 0; i < tabCounter; i++){
-			formatted+="\t1";
-		    }
-		}
-		j++;
-	    }
-	    */
-
 	    else if (ch == '\n'){
 		if (comment){
 		    formatted+=ch;
@@ -48,6 +36,10 @@ public class Format{
 		if (!(unformatted.charAt(j-1) == ';') && !(unformatted.charAt(j-2) == '\\' && unformatted.charAt(j-1) == 'n')){
 		    formatted+=" ";
 		}
+	    }
+	    // tab characters
+	    else if (ch == '\t'){
+		// do nothing
 	    }
 	    // semi colons
 	    else if(ch == ';'){
