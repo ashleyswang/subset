@@ -8,6 +8,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
+import java.io.BufferedReader; // for inputsteam to string
+import java.nio.charset.StandardCharsets;
+
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -20,8 +23,9 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-        server.createContext("/ocr", new OCRReader());
-        server.setExecutor(null); // creates a default executor
+        server.createContext("/ocr", new OCRReader()); // if I see a request to ocr use ocrreader
+        server.createContext("/export", new ImgExport());
+        server.setExecutor(null); // try taking it out after demo
         server.start();
     }
 
@@ -51,4 +55,26 @@ public class Server {
             os.close();
         }
     }
+
+    static class ImgExport implements HttpHandler {
+        @Override
+        public void handle(HttpExchange t) throws IOException {
+            InputStream in = t.getRequestBody();
+            
+            Convert convert = new Convert();
+            String response = convert.convert(in, StandardCharsets.UTF_8);
+            Format formatter = new Format();
+
+            response = formatter.formatText(response);
+
+            Headers headers = t.getResponseHeaders();
+            headers.add("Access-Control-Allow-Origin", "*");
+
+            t.sendResponseHeaders(200, response.length());
+            OutputStream os = t.getResponseBody();
+            os.write(response.getBytes());
+            os.close();
+        }
+    }
+
 }

@@ -24,15 +24,16 @@ window.onload = function() {
         reader.readAsArrayBuffer(event.target.files[0])
     })
     
-    $('#compile').on('click', function(event) {
+    $('#export').on('click', function(event) {
         jQuery.ajax({
-            url:  '/path/to/compile',
-            data: {text: editor.getValue()},
+            url:  '/export',
+            data: editor.getValue(),
+            processData: false,
             success: function(data, status, xhr) {
-                alert('Compile Yay!')
+                alert('Export Yay!')
             },
             error: function(data, status, xhr) {
-                alert('Compile Hey!')
+                alert('Export f***!')
             }
         })
     })
