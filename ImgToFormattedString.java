@@ -39,6 +39,7 @@ public class ImgToFormattedString extends ImgToString{
             } else if (outputType.equals(".cpp")){
                 outfile = new PrintWriter("outfile.cpp");
             }
+	    System.out.println(formattedCode);
             for(char ch: unformattedCode.toCharArray()){
                 outfile.append(ch);
             }
