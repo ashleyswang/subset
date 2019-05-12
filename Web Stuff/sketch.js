@@ -1,6 +1,6 @@
 window.onload = function() {
     var editor = ace.edit("editor");
-    editor.session.setMode('java');
+    editor.session.setMode('ace/mode/java');
     
     $('#file-upload').on('change', function(event) {
         var output = document.getElementById('output');
@@ -38,5 +38,32 @@ window.onload = function() {
                 alert('F***!')
             }
         })
+    })
+
+    $('.radios input').change(function(event) {
+        if(this.value == 'java') {
+            editor.session.setMode('ace/mode/java')
+            $('#download').attr('download', 'output.java')
+        }
+        else if(this.value == 'cpp') {
+            editor.session.setMode('ace/mode/c_cpp')
+            $('#download').attr('download', 'output.cpp')
+        }
+        else if(this.value == 'text') {
+            editor.session.setMode('ace/mode/text')
+            $('#download').attr('download', 'output.txt')
+        }
+    })
+
+    $('#export').on('click', function(event) {
+        var link = document.getElementById('download')
+        var blob = new Blob([editor.getValue()])
+        var href = window.URL.createObjectURL(blob)
+        link.href = href
+        link.click()
+
+        setTimeout(function(){
+            window.URL.revokeObjectURL(href)
+        }, 0)
     })
 }

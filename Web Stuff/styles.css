@@ -85,7 +85,16 @@ background:#2d2d2d;}
     height:300px;
     width: 400px;
     position: right;
-    left:140vmin;
-    top:20vmin;
+    left:60vmin;
+    top:55vmin;
 }
 
+.radios{
+    color: #fcfaf2;
+    font-family: "Karla";
+    font-size: calc(20px + 1vmin);
+    position: absolute;
+    top: 150px;
+    left: 50%;
+
+}

@@ -36,12 +36,12 @@ public class Server {
             Files.copy(in, Paths.get("temp.png"), StandardCopyOption.REPLACE_EXISTING);
 
             String response;
-            Format formatter = new Format();
+            //Format formatter = new Format();
             Tesseract tesseract = new Tesseract();
 
             try {
                 response = tesseract.doOCR(new File("temp.png"));
-                response = formatter.formatText(response);
+                //response = formatter.formatText(response);
             } catch(TesseractException e) {
                 response = e.toString();
             }
