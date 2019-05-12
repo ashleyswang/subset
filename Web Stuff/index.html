@@ -19,6 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src =https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.4/ace.js></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.4/mode-c_cpp.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.4/mode-java.js"></script>
     <script src="sketch.js"></script>
 </head>
     
@@ -31,7 +33,17 @@
         <div class="upload-btn-wrapper">
             <img id="output"/>
             <label class="btn"><input id="file-upload" style= "display:none" type="file" accept="image/*">Upload a file</label>
-            <label class="btn" id="format">Format</label>
+            <label class="btn" id="format">Format Code</label>
+            <label class="btn" id="export">Export File</label>
+            <a id="download" style="display:none" download="output.java"></a>
+        </div>
+        <div class="radios">
+            <input id="java" type="radio" name="filetype" value="java" checked />
+            <label for="java">.java file</label>
+            <input id="cpp" type="radio" name="filetype" value="cpp" />
+            <label for="cpp">.cpp file</label>
+            <input id="txt" type="radio" name="filetype" value="text" />
+            <label for="txt">.txt file</label>
         </div>
         <div id = "editor">Hi</div>
     </div>
