@@ -24,7 +24,7 @@ public class Server {
     public static void main(String[] args) throws Exception {
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
         server.createContext("/ocr", new OCRReader()); // if I see a request to ocr use ocrreader
-        server.createContext("/export", new ImgExport());
+        server.createContext("/format", new FormatString());
         server.setExecutor(null); // try taking it out after demo
         server.start();
     }
@@ -56,7 +56,7 @@ public class Server {
         }
     }
 
-    static class ImgExport implements HttpHandler {
+    static class FormatString implements HttpHandler {
         @Override
         public void handle(HttpExchange t) throws IOException {
             InputStream in = t.getRequestBody();

@@ -24,16 +24,18 @@ window.onload = function() {
         reader.readAsArrayBuffer(event.target.files[0])
     })
     
-    $('#export').on('click', function(event) {
+    $('#format').on('click', function(event) {
         jQuery.ajax({
-            url:  '/export',
+            url:  'http://localhost:8000/format',
+            method: 'POST',
             data: editor.getValue(),
             processData: false,
             success: function(data, status, xhr) {
-                alert('Export Yay!')
+                editor.setValue(data)
+                //alert('Yay!')
             },
             error: function(data, status, xhr) {
-                alert('Export f***!')
+                alert('F***!')
             }
         })
     })
