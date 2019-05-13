@@ -1,6 +1,6 @@
 public class Entry
 {
-	private static final int maxFiles = 5;
+	private static final int maxFiles = 5; //Number of files each entry can take
 	private int numFiles;
 	private String files[] = new String[maxFiles];
 	
