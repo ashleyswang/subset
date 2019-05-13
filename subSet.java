@@ -5,18 +5,19 @@ import java.io.*;
 public class subSet{
     public static void main(String[] args){
 
-	    /*
+	    
 		// File file = new File("/Users/evanaltshule/Documents/UCSB/spring19/cs48/Project/subset/formatTest.txt");
 		// ImgToString output = new ImgToString(file.getPath());
 		// output.format(output.getFilePathway());
 		// output.exportAs("~/Documents/UCSB/spring19/cs48/Project/subset/finalOutput.txt");
 
 		Format format = new Format();
-		String uf = "int main(){cout << \"Hello World \"; return 0;}";
+		String uf = "int main(){cout << \"Hello World \"; if(we do something here){ return something; }return 0; //a comment \n /* comment 1 \n comment 2 */}";
 		String f = new String();
 		f = format.formatText(uf);
-		//System.out.println(f);
+		System.out.println(f);
 
+		/*
 		PrintWriter outfile = null;
 	//unformattedCode = textdetectionAPI.detectText(filePathway);
 
@@ -35,9 +36,10 @@ public class subSet{
 
 
 	}
-	    */
 
+*/
 
+/*
 		Scanner s = new Scanner(System.in);
 		System.out.println("Enter image file pathway. If file is in current directly, add \"./\" before your file name.");
 
@@ -51,5 +53,7 @@ public class subSet{
 		test.exportAs();
 
 		System.out.println("File output completed under outfile.java");
+
+	*/
     }
 }

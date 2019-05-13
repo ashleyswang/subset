@@ -7,7 +7,8 @@ public class Format{
 		String formatted = new String();
 		unformatted += " ";
 		// int tabCounter = 0; .size
-		boolean comment = false;
+		boolean oneLineComment = false;
+		boolean multiLineComment = false;
 		Stack<Character> brackets = new Stack<Character>();
 		for(int j = 0; j <unformatted.length(); j++){
 				char ch = unformatted.charAt(j);
@@ -21,15 +22,42 @@ public class Format{
 			*/
 			// one line comments
 			if(ch == '/' && unformatted.charAt(j+1) == '/'){
-				comment = true;
+				oneLineComment = true;
 				formatted+="//";
 				j++;
 			}
+			// multiline comments
+			else if(ch == '/' && unformatted.charAt(j+1) == '*'){
+				multiLineComment = true;
+				formatted+="/*";
+				j++;
+			}
+			else if(ch == '*' && unformatted.charAt(j+1) == '/'){
+				multiLineComment = false;
+				formatted+="*/\n";
+				if (unformatted.charAt(j+1) == '}' || unformatted.charAt(j+2) == '}' 
+						|| unformatted.charAt(j+3) == '}' || unformatted.charAt(j+4) == '}' 
+						|| unformatted.charAt(j+5) == '}'){
+					for(int i =1; i<brackets.size(); i++){
+						formatted+="\t";
+					}
+				}else{
+					for(int i =0; i<brackets.size(); i++){
+						formatted+="\t";
+					}
+				}
+				j++;
+			}
+
 			// newline characters
+			
 			else if (ch == '\n'){
-				if (comment){
+				if (oneLineComment || multiLineComment){
 					formatted+="\n";
-					comment = false;
+					for(int i = 0; i<brackets.size(); i++){
+						formatted+= "\t";
+					}
+					oneLineComment = false;
 				}
 			}
 			// no weird spacing
