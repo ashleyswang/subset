@@ -22,12 +22,14 @@ public class Format{
 			// one line comments
 			if(ch == '/' && unformatted.charAt(j+1) == '/'){
 				comment = true;
-				formatted+="/";
+				formatted+="//";
+				j++;
 			}
 			// newline characters
 			else if (ch == '\n'){
 				if (comment){
-					formatted+=ch;
+					formatted+="\n";
+					comment = false;
 				}
 			}
 			// no weird spacing
