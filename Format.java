@@ -20,6 +20,18 @@ public class Format{
 				formatted+="f";
 			}
 			*/
+			//newline
+			if (ch == '\\' && unformatted.charAt(j+1) == 'n') {
+				if (oneLineComment || multiLineComment){
+					formatted+="\n";
+					for(int i = 0; i<brackets.size(); i++){
+						formatted+= "\t";
+					}
+					oneLineComment = false;
+				}
+				j++;
+			}
+			
 			// one line comments
 			if(ch == '/' && unformatted.charAt(j+1) == '/'){
 				oneLineComment = true;
@@ -51,15 +63,15 @@ public class Format{
 
 			// newline characters
 			
-			else if (ch == '\n'){
-				if (oneLineComment || multiLineComment){
-					formatted+="\n";
-					for(int i = 0; i<brackets.size(); i++){
-						formatted+= "\t";
-					}
-					oneLineComment = false;
-				}
-			}
+// 			else if (ch == '\n'){
+// 				if (oneLineComment || multiLineComment){
+// 					formatted+="\n";
+// 					for(int i = 0; i<brackets.size(); i++){
+// 						formatted+= "\t";
+// 					}
+// 					oneLineComment = false;
+// 				}
+// 			}
 			// no weird spacing
 			else if(ch == ' '){
 				if (!(unformatted.charAt(j-1) == ';') && !(unformatted.charAt(j) == '\n')){
