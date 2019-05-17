@@ -1,6 +1,7 @@
 import java.util.*;
+import java.io.*;
 
-public class Database
+public class Database implements Serializable
 {
 	private Hashtable<String, Entry> Data = new Hashtable<String, Entry>();
 	

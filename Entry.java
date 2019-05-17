@@ -1,4 +1,6 @@
-public class Entry
+import java.io.*;
+
+public class Entry implements Serializable
 {
 	private static final int maxFiles = 5; //Number of files each entry can take
 	private int numFiles;

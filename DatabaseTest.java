@@ -1,3 +1,5 @@
+import java.io.*;
+
 public class DatabaseTest
 {
 	public static void main(String[] arg)
@@ -25,5 +27,19 @@ public class DatabaseTest
 		//System.out.println(data.getFile("georgekripac@ucsb.edu", 0));
 
 		data.printAll();
+
+		try
+		{
+			FileOutputStream fs = new FileOutputStream(“Data.ser”);
+			ObjectOutputStream os = new ObjectOutputStream(fs);
+
+			os.writeObject(Data);
+			os.close();
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+
 	}
 }
