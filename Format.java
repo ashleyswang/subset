@@ -32,11 +32,11 @@ public class Format{
 				j++;
 			}
 			
-			 else if (ch == '\\' && unformatted.charAt(j+1) == '"')
+			else if (ch == '\\' && unformatted.charAt(j+1) == '"')
                             continue;
 			
 			// one line comments
-			if(ch == '/' && unformatted.charAt(j+1) == '/'){
+			else if(ch == '/' && unformatted.charAt(j+1) == '/'){
 				oneLineComment = true;
 				formatted+="//";
 				j++;
