@@ -110,16 +110,11 @@ public class Format{
 					brackets.pop();
 				}
 				formatted += ch;
-				 else if(")}]".indexOf(ch) != -1) {
-                                if (brackets.size() > 0){
-                                        brackets.pop();
-                                }
-                                formatted += ch;
+	
                                 if (ch == '}'){
                                         formatted += "\n";
-                                        if (unformatted.charAt(j+1) == '}' || unformat\
-ted.charAt(j+2) == '}'
-                                            || unformatted.charAt(j+3) == '}' ){
+                                        if (unformatted.charAt(j+1) == '}' || unformat
+ted.charAt(j+2) == '}' || unformatted.charAt(j+3) == '}' ){
                                             for(int i =1; i<brackets.size(); i++){
                                                 formatted+="\t";
                                             }
