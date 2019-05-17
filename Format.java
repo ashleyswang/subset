@@ -10,7 +10,7 @@ public class Format{
 		boolean oneLineComment = false;
 		boolean multiLineComment = false;
 		Stack<Character> brackets = new Stack<Character>();
-		for(int j = 0; j <unformatted.length(); j++){
+		for(int j = 1; j <unformatted.length()-2; j++){
 				char ch = unformatted.charAt(j);
 			/*
 			// for loops
@@ -31,6 +31,9 @@ public class Format{
 				}
 				j++;
 			}
+			
+			 else if (ch == '\\' && unformatted.charAt(j+1) == '"')
+                            continue;
 			
 			// one line comments
 			if(ch == '/' && unformatted.charAt(j+1) == '/'){
