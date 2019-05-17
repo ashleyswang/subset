@@ -74,7 +74,9 @@ p{
 
 img{
     max-width:450px;
-    position:relative;
+    position:fixed;
+    bottom: 0;
+    right: 0;
 }
 input[type=file]{
 padding:10px;
