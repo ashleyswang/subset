@@ -32,8 +32,15 @@ public class Format{
 				j++;
 			}
 			
+			// delete backslach quote
 			else if (ch == '\\' && unformatted.charAt(j+1) == '"')
                             continue;
+			
+			// get rid of backslash tab when reformatting
+			else if (ch == '\\' && unformatted.charAt(j+1) == 't') {
+                            j++;
+                            continue;
+                        }
 			
 			// one line comments
 			else if(ch == '/' && unformatted.charAt(j+1) == '/'){
@@ -103,13 +110,27 @@ public class Format{
 					brackets.pop();
 				}
 				formatted += ch;
-				if (ch == '}'){
-					formatted += "\n";
-					for(int i = 0; i<brackets.size(); i++){
-						formatted+= "\t";
-					}
-				}
-			}
+				 else if(")}]".indexOf(ch) != -1) {
+                                if (brackets.size() > 0){
+                                        brackets.pop();
+                                }
+                                formatted += ch;
+                                if (ch == '}'){
+                                        formatted += "\n";
+                                        if (unformatted.charAt(j+1) == '}' || unformat\
+ted.charAt(j+2) == '}'
+                                            || unformatted.charAt(j+3) == '}' ){
+                                            for(int i =1; i<brackets.size(); i++){
+                                                formatted+="\t";
+                                            }
+                                        }else{
+                                            for(int i =0; i<brackets.size(); i++){
+                                                formatted+="\t";
+                                            }
+
+                                        }
+                                }
+                        }
 			// semicolons
 			else if(ch == ';'){
 				formatted += ";";
@@ -124,16 +145,18 @@ public class Format{
 						|| unformatted.charAt(j+3) == '}' || unformatted.charAt(j+4) == '}' 
 						|| unformatted.charAt(j+5) == '}'){
 						for(int i =1; i<brackets.size(); i++){
-							formatted+="\t";
-						}
-					}else{
-						for(int i =0; i<brackets.size(); i++){
-							formatted+="\t";
-						}
-					}
-				}
+                                                        formatted+="\t";
+                                                }
+                                        }else{
+                                                for(int i =0; i<brackets.size(); i++){
+                                                        formatted+="\t";
+                                                }
+                                        }
+                                }
 
-			}
+                        }
+
+		
 
 			/*
 			// semi colons
