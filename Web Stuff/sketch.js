@@ -1,6 +1,9 @@
 window.onload = function() {
     var editor = ace.edit("editor");
     editor.session.setMode('ace/mode/java');
+    editor.session.setNewLineMode("unix");
+    JSON.stringify(editor.session.doc.getNewLineCharacter());
+    //editor.session.doc.getValue().indexOf("\r") == -1;
     
     $('#file-upload').on('change', function(event) {
         var output = document.getElementById('output');
@@ -28,7 +31,7 @@ window.onload = function() {
         jQuery.ajax({
             url:  'http://localhost:8000/format',
             method: 'POST',
-            data: editor.getValue(),
+            data: JSON.stringify(editor.getValue()),
             processData: false,
             success: function(data, status, xhr) {
                 editor.setValue(data)
