@@ -28,10 +28,11 @@ public class Entry implements Serializable
 
 	public String getFile(int index) //0 is most recent file
 	{
-		if (index > -1 && index < maxFiles)
+		if (index > -1 && index < numFiles)
 		{
 			return files[index];
 		}
+		System.out.println("File does not exist");
 		return null;
 	}
 
