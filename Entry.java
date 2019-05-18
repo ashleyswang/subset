@@ -28,7 +28,11 @@ public class Entry implements Serializable
 
 	public String getFile(int index) //0 is most recent file
 	{
-		return files[index];
+		if (index > -1 && index < maxFiles)
+		{
+			return files[index];
+		}
+		return null;
 	}
 
 	public int getNumFiles()

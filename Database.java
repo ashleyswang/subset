@@ -18,13 +18,23 @@ public class Database implements Serializable
 
 	public Entry getEntry(String email)
 	{
-		return data.get(email);
+		if (data.containsKey(email))
+		{
+			return data.get(email);
+		}
+		System.out.println("Email is not in Database");
+		return null;
 	}
 	
 	public String getFile(String email, int file) //0 is most recent file
 	{
-		Entry entry = data.get(email);
-		return entry.getFile(file);
+		if (data.containsKey(email))
+		{
+			Entry entry = data.get(email);
+			return entry.getFile(file);
+		}
+		System.out.println("Email is not in Database");
+		return null;
 	}
 
 	public void printAll() //Prints all Entries and corresponding Files in Database
@@ -41,9 +51,14 @@ public class Database implements Serializable
 
 	public void printEntry(String email) //Prints all files associated with Email
 	{
-		Entry entry = data.get(email);
-		System.out.println(email + ":");
-		entry.printFiles();
+		if (data.containsKey(email))
+		{
+			Entry entry = data.get(email);
+			System.out.println(email + ":");
+			entry.printFiles();
+			return;
+		}
+		System.out.println("Email is not in Database");
 	}
 
 	public void simplePrint()
@@ -58,7 +73,11 @@ public class Database implements Serializable
 
 	public void removeEntry(String email) //Clear specified entry from table
 	{
-		data.remove(email);
+		if (data.containsKey(email))
+		{
+			data.remove(email);
+		}
+		System.out.println("Email is not in Database");
 	}
 
 	public void clearData() //Clear all Entries from table
