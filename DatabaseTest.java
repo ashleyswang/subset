@@ -30,11 +30,11 @@ public class DatabaseTest
 
 		try
 		{
-			FileOutputStream fs = new FileOutputStream(“Data.ser”);
-			ObjectOutputStream os = new ObjectOutputStream(fs);
+		//	FileOutputStream fs = new FileOutputStream("Data.ser");
+		//	ObjectOutputStream os = new ObjectOutputStream(fs);
 
-			os.writeObject(Data);
-			os.close();
+		//	os.writeObject(Data);
+		//	os.close();
 		}
 		catch(Exception ex)
 		{

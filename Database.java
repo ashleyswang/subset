@@ -3,38 +3,35 @@ import java.io.*;
 
 public class Database implements Serializable
 {
-	private Hashtable<String, Entry> Data = new Hashtable<String, Entry>();
-	
-	public Database()
-	{}
+	private Hashtable<String, Entry> data = new Hashtable<String, Entry>();
 
 	public void addEntry(String email, String file) //Email and file contents as a String
 	{
-		if (Data.containsKey(email))
+		if (data.containsKey(email))
 		{
-			Entry entry = Data.get(email);
+			Entry entry = data.get(email);
 			entry.addFile(file);
 			return;
 		}
-		Data.put(email, new Entry(file));
+		data.put(email, new Entry(file));
 	}
 
 	public Entry getEntry(String email)
 	{
-		return Data.get(email);
+		return data.get(email);
 	}
 	
 	public String getFile(String email, int file) //0 is most recent file
 	{
-		Entry entry = Data.get(email);
+		Entry entry = data.get(email);
 		return entry.getFile(file);
 	}
 
 	public void printAll() //Prints all Entries and corresponding Files in Database
 	{
-		System.out.println("Emails in Database: " + Data.size());
+		System.out.println("Emails in Database: " + data.size());
 		System.out.println("-------------------------------------------------------------------");
-		Set<String> emails = Data.keySet();
+		Set<String> emails = data.keySet();
 
 		for (String email : emails)
 		{ 
@@ -44,28 +41,28 @@ public class Database implements Serializable
 
 	public void printEntry(String email) //Prints all files associated with Email
 	{
-		Entry entry = Data.get(email);
+		Entry entry = data.get(email);
 		System.out.println(email + ":");
 		entry.printFiles();
 	}
 
 	public void simplePrint()
 	{
-		System.out.println(Data);
+		System.out.println(data);
 	}
 
 	public int getNumEntries()
 	{
-		return Data.size();
+		return data.size();
 	}
 
 	public void removeEntry(String email) //Clear specified entry from table
 	{
-		Data.remove(email);
+		data.remove(email);
 	}
 
 	public void clearData() //Clear all Entries from table
 	{
-		Data.clear();
+		data.clear();
 	}
 }
