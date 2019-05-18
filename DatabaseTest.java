@@ -4,6 +4,7 @@ public class DatabaseTest
 {
 	public static void main(String[] arg)
 	{
+		
 		Database data = new Database();
 		
 		data.addEntry("georgekripac@ucsb.edu", "int i = 5;");
@@ -27,19 +28,43 @@ public class DatabaseTest
 		//System.out.println(data.getFile("georgekripac@ucsb.edu", 0));
 
 		data.printAll();
+		data.saveDatabase();
 
+		System.out.println();
+
+		Database data2 = new Database();
+		data2.printAll();
+
+		System.out.println();
+
+		data2.getDatabase();
+		data2.printAll();
+
+		/*
 		try
 		{
-			FileOutputStream fs = new FileOutputStream("Data.ser");
+			FileOutputStream fs = new FileOutputStream("HashData.ser");
 			ObjectOutputStream os = new ObjectOutputStream(fs);
 
-			os.writeObject(Data);
+			os.writeObject(data);
 			os.close();
 		}
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
 		}
-
+		
+		try
+		{
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream("HashData.ser"));
+			Database Restored = (Database) is.readObject();
+			
+			Restored.printAll();
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		*/
 	}
 }
