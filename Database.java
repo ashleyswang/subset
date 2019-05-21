@@ -79,6 +79,7 @@ public class Database implements Serializable
 		if (data.containsKey(email))
 		{
 			data.remove(email);
+			return;
 		}
 		System.out.println("Email is not in Database");
 	}
