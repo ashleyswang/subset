@@ -48,7 +48,7 @@ public class Database implements Serializable
 			return entry.getAllFiles();
 		}
 		System.out.println("Email is not in Database");
-		return null;
+		return new String[0];
 	}
 
 	public void printAll() //Prints all Entries and corresponding Files in Hashtable
