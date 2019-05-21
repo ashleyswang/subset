@@ -52,6 +52,7 @@ public class DatabaseTest
 		System.out.println(data2.getAllFiles("julialiu@ucsb.edu").length);
 		System.out.println(data2.getAllFiles("ealtshule@ucsb.edu").length);
 		System.out.println(data2.getAllFiles("kellywang@ucsb.edu").length);
+		System.out.println(data2.getAllFiles("george@ucsb.edu").length);
 		
 		
 		/*
