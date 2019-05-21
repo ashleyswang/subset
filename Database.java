@@ -40,6 +40,17 @@ public class Database implements Serializable
 		return null;
 	}
 
+	public String[] getAllFiles(String email) //Gets all Files from specified Entry in Hashtable
+	{
+		if (data.containsKey(email))
+		{
+			Entry entry = data.get(email);
+			return entry.getAllFiles();
+		}
+		System.out.println("Email is not in Database");
+		return null;
+	}
+
 	public void printAll() //Prints all Entries and corresponding Files in Hashtable
 	{
 		System.out.println("Emails in Database: " + data.size());
