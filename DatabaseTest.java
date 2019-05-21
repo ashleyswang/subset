@@ -39,7 +39,16 @@ public class DatabaseTest
 
 		data2.getDatabase();
 		data2.printAll();
+		
+		System.out.println();
 
+		System.out.println(data2.getFile("georgekripac@ucsb.edu", 0));
+		System.out.println(data2.getFile("george@ucsb.edu", 0));
+		System.out.println(data2.getFile("georgekripac@ucsb.edu", 5));
+		data2.removeEntry("georgekripac@ucsb.edu");
+		data2.removeEntry("georgekripac@ucsb.edu");
+		data2.printAll();
+		
 		/*
 		try
 		{
