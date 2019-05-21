@@ -11,7 +11,7 @@ import java.net.InetSocketAddress;
 import java.io.BufferedReader; // for inputsteam to string
 import java.nio.charset.StandardCharsets;
 
-import static spark.Spark.get;
+import static spark.Spark.*;
 
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
@@ -19,57 +19,29 @@ import net.sourceforge.tess4j.TesseractException;
 public class SparkServer {
 
     public static void main(String[] args){
+        port(8000);
         get("/hello", (req, res) -> "Hello World");
-    }
 
-/*
-    static class OCRReader implements HttpHandler {
-        @Override
-        public void handle(HttpExchange t) throws IOException {
-            InputStream in = t.getRequestBody();
-            Files.copy(in, Paths.get("temp.png"), StandardCopyOption.REPLACE_EXISTING);
-
+        post("/ocr", (req, res) -> {
             String response;
-            //Format formatter = new Format();
+            Files.write(Paths.get("temp.png"), req.bodyAsBytes());
             Tesseract tesseract = new Tesseract();
 
             try {
                 response = tesseract.doOCR(new File("temp.png"));
-                //response = formatter.formatText(response);
             } catch(TesseractException e) {
                 response = e.toString();
             }
 
-            Headers headers = t.getResponseHeaders();
-            headers.add("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Origin", "*");
+            return response;
+        });
 
-            t.sendResponseHeaders(200, response.length());
-            OutputStream os = t.getResponseBody();
-            os.write(response.getBytes());
-            os.close();
-        }
-    }
-
-    static class FormatString implements HttpHandler {
-        @Override
-        public void handle(HttpExchange t) throws IOException {
-            InputStream in = t.getRequestBody();
-            
-            Convert convert = new Convert();
-            String response = convert.convert(in, StandardCharsets.UTF_8);
+        post("/format", (req, res) -> {
             Format formatter = new Format();
-
-            response = formatter.formatText(response);
-
-            Headers headers = t.getResponseHeaders();
-            headers.add("Access-Control-Allow-Origin", "*");
-
-            t.sendResponseHeaders(200, response.length());
-            OutputStream os = t.getResponseBody();
-            os.write(response.getBytes());
-            os.close();
-        }
+            res.header("Access-Control-Allow-Origin", "*");
+            return formatter.formatText(req.body());
+        });
     }
-    */
-
+    
 }
