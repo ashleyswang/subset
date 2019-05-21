@@ -12,6 +12,7 @@ import java.io.BufferedReader; // for inputsteam to string
 import java.nio.charset.StandardCharsets;
 
 import static spark.Spark.*;
+import org.json.json;
 
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
@@ -42,6 +43,34 @@ public class SparkServer {
             res.header("Access-Control-Allow-Origin", "*");
             return formatter.formatText(req.body());
         });
+
+        post("/dbinput", (req, res) -> {
+            // extract from req
+            String key; 
+            String input;
+
+            Database database = new Database();
+            database.getDatabase();
+
+            database.addEntry(key, input);
+            database.saveDatabase();
+
+            res.header("Access-Control-Allow-Origin", "*");
+            return "Successfully saved file!";
+        });
+
+        post("/dboutput", (req, res) -> {
+            // extract from req
+            String key = req.body();
+
+            Database database = new Database();
+            database.getDatabase();
+
+            JSONArray ja = new JSONArray(database.getAllFiles());
+
+            res.header("Access-Control-Allow-Origin", "*");
+            return ja.toString();
+        });
     }
-    
+
 }
