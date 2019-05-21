@@ -36,6 +36,16 @@ public class Entry implements Serializable
 		return null;
 	}
 
+	public String[] getAllFiles() //Returns String array with all files
+	{
+		String allFiles[] = new String[numFiles];
+		for (int i = 0; i < numFiles; i++)
+		{
+			allFiles[i] = files[i];
+		}
+		return allFiles;
+	}
+
 	public int getNumFiles()
 	{
 		return numFiles;
