@@ -48,6 +48,11 @@ public class DatabaseTest
 		data2.removeEntry("georgekripac@ucsb.edu");
 		data2.removeEntry("georgekripac@ucsb.edu");
 		data2.printAll();
+		System.out.println(data2.getAllFiles("julialiu@ucsb.edu")[0]);
+		System.out.println(data2.getAllFiles("julialiu@ucsb.edu").length);
+		System.out.println(data2.getAllFiles("ealtshule@ucsb.edu").length);
+		System.out.println(data2.getAllFiles("kellywang@ucsb.edu").length);
+		
 		
 		/*
 		try
