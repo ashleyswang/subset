@@ -17,7 +17,7 @@ public class Compiler {
         } catch (Exception e) {}
 	}
 
-	public String run(String fileName){
+	public static String run(String fileName){
 		String s;
 		String output = "";
         Process r;
@@ -36,15 +36,16 @@ public class Compiler {
 
 /*
     public static void main(String args[]) {
-    	Compiler comp = new Compiler();
+
        	String fileName = "CompilerTest";
        	try{
-       		comp.compile(fileName);
+       		compile(fileName);
        	}
        	catch (Exception e){
        		System.out.println("Compilation error");
        	}
-       	System.out.print(comp.run(fileName));
+       	System.out.print(run(fileName));
     }
     */
+    
 }
