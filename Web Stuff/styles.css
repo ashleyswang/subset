@@ -33,7 +33,7 @@ p{
     padding: 0 30px; 
     position: fixed;
     right:0vmin;
-    top:15px;
+    top:98vmin;
 }
 
 .link2:hover{
@@ -110,4 +110,10 @@ input[type=file]{
     position:absolute; 
     left: 4%;
     top: 58vmin;
+}
+
+.DBinput_Output{
+    position:absolute;
+    left: 30%;
+    top: 10vmin;
 }
