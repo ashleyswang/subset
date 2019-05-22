@@ -38,7 +38,7 @@ window.onload = function() {
                 //alert('Yay!')
             },
             error: function(data, status, xhr) {
-                alert('F***!')
+                alert('Unable to connect to server.')
             }
         })
     })
@@ -70,12 +70,12 @@ window.onload = function() {
         }, 0)
     })
 
-    $('#dbinput').on('click', function(event) {
+    $('#DBInput').on('click', function(event) {
         jQuery.ajax({
             url:  'http://localhost:8000/dbinput',
             method: 'POST',
             data: {
-                email: $('#Email_List').value(),
+                email: $('#Email_List input').val(),
                 code: JSON.stringify(editor.getValue())
             },
             success: function(data, status, xhr) {
@@ -87,18 +87,35 @@ window.onload = function() {
         })
     })
 
-    $('#dboutput').on('click', function(event) {
+    $('#DBOutput').on('click', function(event) {
         jQuery.ajax({
             url:  'http://localhost:8000/dboutput',
             method: 'POST',
             data: {
-                email: $('#Email_List').value(),
+                email: $('#Email_List input').val(),
             },
             success: function(data, status, xhr) {
+                console.log(data)
                 var json = JSON.parse(data)
             },
             error: function(data, status, xhr) {
-                alert("Unsuccessful save.")
+                alert("Unsuccessful lookup. Sucks to suck.")
+            }
+        })
+    })
+
+    $('#compiler').on('click', function(event) {
+        jQuery.ajax({
+            url:  'http://localhost:8000/compiler',
+            method: 'POST',
+            data: {
+                code: editor.getValue()
+            },
+            success: function(data, status, xhr) {
+                console.log(data)
+            },
+            error: function(data, status, xhr) {
+                alert("someshiz.")
             }
         })
     })
