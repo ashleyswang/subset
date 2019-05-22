@@ -1,19 +1,30 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 
-public class compiler {
+public class Compiler {
 
-	public void compile(String fileName){
-		String s;
-        Process p;
-        try {
-            p = Runtime.getRuntime().exec("javac " + fileName + ".java");
-            BufferedReader br = new BufferedReader(
-                new InputStreamReader(p.getInputStream()));
-            while ((s = br.readLine()) != null)
-                System.out.println(s);
-            p.waitFor();
-            p.destroy();
+	public void compile(String fileText){
+	    String s;
+      Process p;
+      FileOutputStream out = null;
+      try{
+          out = new FileOutputStream("compileFile.java");
+          for(int i = 0; i <fileText.length(); i++){
+            out.write(fileText.charAt(i));
+          }
+      }
+      finally {
+         if (out != null) {
+            out.close();
+         }
+      }
+      try {
+          p = Runtime.getRuntime().exec("javac compileFile.java");
+          BufferedReader br = new BufferedReader(
+               new InputStreamReader(p.getInputStream()));
+          while ((s = br.readLine()) != null)
+              System.out.println(s);
+          p.waitFor();
+          p.destroy();
         } catch (Exception e) {}
 	}
 
@@ -22,7 +33,7 @@ public class compiler {
 		String output = "";
         Process r;
         try {
-            r = Runtime.getRuntime().exec("java " + fileName);
+            r = Runtime.getRuntime().exec("java compileFile.java");
             BufferedReader br = new BufferedReader(
                 new InputStreamReader(r.getInputStream()));
             while ((s = br.readLine()) != null){
