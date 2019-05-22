@@ -1,6 +1,6 @@
 CLASSPATH = target/dependency/*:.
 
-classes: Format.class ImgToFormattedString.class ImgToString.class TextDetection.class Server.class subSet.class SparkServer.class
+classes: Format.class ImgToFormattedString.class ImgToString.class TextDetection.class Server.class subSet.class SparkServer.class Compiler.class
 
 run: classes eng.traineddata
 	LC_ALL=C java -cp "$(CLASSPATH)" -Djava.awt.headless=true subSet

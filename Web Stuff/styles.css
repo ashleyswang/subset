@@ -18,23 +18,22 @@ p{
 .phrase{
     color: #fcfaf2;
     font-family: "Karla";
-    font-size: calc(20px + 1vmin);
+    font-size: calc(15px + 1vmin);
     position:fixed; 
-    padding-bottom: 300px;
-    padding-left: 25px;
-    top: 280px
+    top: 28vmin;
+    left: 4%
 
 }
 
 
 .link2{
     color: #ccdefc;
-    font-size: calc(18px + 1.6vmin);
+    font-size: calc(10px + 1.6vmin);
     text-decoration: none;
     padding: 0 30px; 
     position: fixed;
     right:0vmin;
-    top:30px;
+    top:98vmin;
 }
 
 .link2:hover{
@@ -48,10 +47,9 @@ p{
 
 .upload-btn-wrapper {
     position: absolute;
-/*    overflow: hidden;*/
     display: inline-block;
-    padding-left: 90vmin;
-    padding-top:50vmin;
+    top: 70vmin;
+    left: 34%;
 }
 
 .btn {
@@ -73,22 +71,26 @@ p{
 }
 
 img{
-    max-width:450px;
-    position:fixed;
-    bottom: 0;
-    right: 0;
+    max-width:400px;
+    max-height:300px;
+    position:absolute;
+    left: 110%;
+    bottom: 10vmin;
 }
+/*
 input[type=file]{
-padding:10px;
-background:#2d2d2d;}
+    padding:10px;
+    background:#2d2d2d;
+}
+*/
 
 #editor{
     position:absolute;
     height:300px;
     width: 400px;
     position: right;
-    left:60vmin;
-    top:55vmin;
+    left:70vmin;
+    top:25vmin;
 }
 
 .radios{
@@ -96,7 +98,22 @@ background:#2d2d2d;}
     font-family: "Karla";
     font-size: calc(20px + 1vmin);
     position: absolute;
-    top: 150px;
-    left: 50%;
+    top: 20vmin;
+    left: 36%;
 
+}
+
+#Email_List{
+    color:#fcfaf2;
+    font-family: "Neuton";
+    font-size: calc(10px + 1.6vmin);
+    position:absolute; 
+    left: 4%;
+    top: 58vmin;
+}
+
+.DBinput_Output{
+    position:absolute;
+    left: 30%;
+    top: 10vmin;
 }

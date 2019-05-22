@@ -12,7 +12,7 @@ import java.io.BufferedReader; // for inputsteam to string
 import java.nio.charset.StandardCharsets;
 
 import static spark.Spark.*;
-import org.json.json;
+import org.json.*;
 
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
@@ -46,13 +46,13 @@ public class SparkServer {
 
         post("/dbinput", (req, res) -> {
             // extract from req
-            String key; 
-            String input;
+            String user = req.queryParams("email"); 
+            String input = req.queryParams("code");
 
             Database database = new Database();
             database.getDatabase();
 
-            database.addEntry(key, input);
+            database.addEntry(user, input);
             database.saveDatabase();
 
             res.header("Access-Control-Allow-Origin", "*");
@@ -60,16 +60,25 @@ public class SparkServer {
         });
 
         post("/dboutput", (req, res) -> {
-            // extract from req
-            String key = req.body();
+            String user = req.body();
 
             Database database = new Database();
             database.getDatabase();
 
-            JSONArray ja = new JSONArray(database.getAllFiles());
+            JSONArray ja = new JSONArray(database.getAllFiles(user));
 
             res.header("Access-Control-Allow-Origin", "*");
             return ja.toString();
+        });
+
+        post("/compiler", (req, res) -> {
+            Files.write(Paths.get("Hello.java"), req.bodyAsBytes());
+            Compiler compiler = new Compiler();
+            compiler.compile("Hello");
+            String response = compiler.run("Hello");
+
+            res.header("Access-Control-Allow-Origin", "*");
+            return response;
         });
     }
 
