@@ -69,4 +69,38 @@ window.onload = function() {
             window.URL.revokeObjectURL(href)
         }, 0)
     })
+
+    $('#dbinput').on('click', function(event) {
+        jQuery.ajax({
+            url:  'http://localhost:8000/dbinput',
+            method: 'POST',
+            data: {
+                email: $('#Email_List').value(),
+                code: JSON.stringify(editor.getValue())
+            },
+            success: function(data, status, xhr) {
+                alert("File successfully saved to database!")
+            },
+            error: function(data, status, xhr) {
+                alert("Unsuccessful save.")
+            }
+        })
+    })
+
+    $('#dboutput').on('click', function(event) {
+        jQuery.ajax({
+            url:  'http://localhost:8000/dboutput',
+            method: 'POST',
+            data: {
+                email: $('#Email_List').value(),
+            },
+            success: function(data, status, xhr) {
+                var json = JSON.parse(data)
+            },
+            error: function(data, status, xhr) {
+                alert("Unsuccessful save.")
+            }
+        })
+    })
+
 }
