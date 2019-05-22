@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -21,6 +22,7 @@ public class SparkServer {
 
     public static void main(String[] args){
         port(8000);
+        staticFiles.location("/Web Stuff");
         get("/hello", (req, res) -> "Hello World");
 
         post("/ocr", (req, res) -> {
@@ -72,13 +74,16 @@ public class SparkServer {
         });
 
         post("/compiler", (req, res) -> {
-            Files.write(Paths.get("Hello.java"), req.bodyAsBytes());
+            String input = req.queryParams("code");
+            Exporter.exportAs(input);
             Compiler compiler = new Compiler();
             compiler.compile("Hello");
             String response = compiler.run("Hello");
 
             res.header("Access-Control-Allow-Origin", "*");
             return response;
+
+            //return input;
         });
     }
 
