@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Compiler {
 
-	public static void compile(String fileName){
+	public void compile(String fileName){
 	    String s;
       Process p;
       try {
@@ -17,7 +17,7 @@ public class Compiler {
         } catch (Exception e) {}
 	}
 
-	public static String run(String fileName){
+	public String run(String fileName){
 		String s;
 		String output = "";
         Process r;

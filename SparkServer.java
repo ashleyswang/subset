@@ -72,10 +72,10 @@ public class SparkServer {
         });
 
         post("/compiler", (req, res) -> {
-            Files.write(Paths.get("temp.java"), req.bodyAsBytes());
-            compiler aCompiler = new compiler();
-            compiler.compile("temp");
-            String response = compiler.run("temp");
+            Files.write(Paths.get("Hello.java"), req.bodyAsBytes());
+            Compiler compiler = new Compiler();
+            compiler.compile("Hello");
+            String response = compiler.run("Hello");
 
             res.header("Access-Control-Allow-Origin", "*");
             return response;

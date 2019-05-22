@@ -113,6 +113,7 @@ window.onload = function() {
             },
             success: function(data, status, xhr) {
                 console.log(data)
+                alert(data)
             },
             error: function(data, status, xhr) {
                 alert("someshiz.")
