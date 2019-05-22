@@ -1,8 +1,9 @@
 import java.io.*;
+import java.util.Scanner;
 
 public class Compiler {
 
-	public void compile(String fileName){
+	public static void compile(String fileName){
 	    String s;
       Process p;
       try {
@@ -35,8 +36,8 @@ public class Compiler {
 
 /*
     public static void main(String args[]) {
-    	compiler comp = new compiler();
-       	String fileName = "compilertest";
+    	Compiler comp = new Compiler();
+       	String fileName = "CompilerTest";
        	try{
        		comp.compile(fileName);
        	}
@@ -44,5 +45,6 @@ public class Compiler {
        		System.out.println("Compilation error");
        	}
        	System.out.print(comp.run(fileName));
-    }*/
+    }
+    */
 }
