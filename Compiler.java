@@ -2,23 +2,11 @@ import java.io.*;
 
 public class Compiler {
 
-	public void compile(String fileText){
+	public void compile(String fileName){
 	    String s;
       Process p;
-      FileOutputStream out = null;
-      try{
-          out = new FileOutputStream("compileFile.java");
-          for(int i = 0; i <fileText.length(); i++){
-            out.write(fileText.charAt(i));
-          }
-      }
-      finally {
-         if (out != null) {
-            out.close();
-         }
-      }
       try {
-          p = Runtime.getRuntime().exec("javac compileFile.java");
+          p = Runtime.getRuntime().exec("javac " + fileName + ".java");
           BufferedReader br = new BufferedReader(
                new InputStreamReader(p.getInputStream()));
           while ((s = br.readLine()) != null)
@@ -33,7 +21,7 @@ public class Compiler {
 		String output = "";
         Process r;
         try {
-            r = Runtime.getRuntime().exec("java compileFile.java");
+            r = Runtime.getRuntime().exec("java " + fileName);
             BufferedReader br = new BufferedReader(
                 new InputStreamReader(r.getInputStream()));
             while ((s = br.readLine()) != null){
@@ -45,7 +33,7 @@ public class Compiler {
         return output;
 	}
 
-
+/*
     public static void main(String args[]) {
     	compiler comp = new compiler();
        	String fileName = "compilertest";
@@ -56,5 +44,5 @@ public class Compiler {
        		System.out.println("Compilation error");
        	}
        	System.out.print(comp.run(fileName));
-    }
+    }*/
 }
