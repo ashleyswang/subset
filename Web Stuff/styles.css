@@ -18,23 +18,22 @@ p{
 .phrase{
     color: #fcfaf2;
     font-family: "Karla";
-    font-size: calc(20px + 1vmin);
+    font-size: calc(15px + 1vmin);
     position:fixed; 
-    padding-bottom: 300px;
-    padding-left: 25px;
-    top: 280px
+    top: 28vmin;
+    left: 4%
 
 }
 
 
 .link2{
     color: #ccdefc;
-    font-size: calc(18px + 1.6vmin);
+    font-size: calc(10px + 1.6vmin);
     text-decoration: none;
     padding: 0 30px; 
     position: fixed;
     right:0vmin;
-    top:30px;
+    top:15px;
 }
 
 .link2:hover{
@@ -109,5 +108,6 @@ input[type=file]{
     font-family: "Neuton";
     font-size: calc(10px + 1.6vmin);
     position:absolute; 
-    height:300px;
+    left: 4%;
+    top: 58vmin;
 }

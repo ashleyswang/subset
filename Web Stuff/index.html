@@ -21,33 +21,14 @@
     <script src =https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.4/ace.js></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.4/mode-c_cpp.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.4/mode-java.js"></script>
-<!--
-    <meta name="google-signin-client_id" content="132602153683-s19clefc1dufdltig7hpcbsirv6qug06.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script>
-        gapi.load('auth2', function(){
-            gapi.auth2.init();
-        })
-    </script>
--->
-<!--
-    <script>
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        }
-    </script>
--->
     <script src="sketch.js"></script>
 </head>
     
 <body id="body">
     <p>{{subSet}}</p>
     <span class = phrase>bridging the handwritten <br><br><br><br><br><br><br><br>
-        and online coding experience <br><br><br><br><br><br><br><br> with machine vision technology</span>
+        and online coding experience <br><br><br><br><br><br><br><br> with Tesseract.<br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>Sign up with your email</span>
     <a class = "link2" href = "https://github.com/ashleyswang/subset">Github</a>
     <div class = contain>
         <div class="upload-btn-wrapper">
@@ -58,32 +39,24 @@
             <a id="download" style="display:none" download="output.java"></a>
         </div>
         <div class="radios">
-            <input id="java" type="radio" name="filetype" value="java" checked />
+            <input id="java" type="radio" name="filetype" value="java"/>
             <label for="java">.java file</label>
             <input id="cpp" type="radio" name="filetype" value="cpp" />
             <label for="cpp">.cpp file</label>
-            <input id="txt" type="radio" name="filetype" value="text" />
+            <input id="txt" type="radio" name="filetype" value="text"checked/>
             <label for="txt">.txt file</label>
         </div>
-        <div id = "editor">Fix formatting issues here.</div>
-<!--
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <a href="#" onclick="signOut();">Sign out</a>
--->
-<!--
-        <script>
-            function signOut() {
-                var auth2 = gapi.auth2.getAuthInstance();
-                auth2.signOut().then(function () {
-                    console.log('User signed out.');
-                });
-            }
-        </script>
--->
+        <div id = "editor">* Upload photo
+* reformat if needed
+* fix any remaining formatting issues
+* sign up and save with email
+* choose the file extension 
+* export file to local computer</div>
+
     </div>
     <div id = "Email_List">
         <form>
-            Email: <input type="text" name="Email_List">
+            Email: <input type="text" name="Email_List" size = "30">
         </form>
     </div>
     <script>
