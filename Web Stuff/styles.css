@@ -104,3 +104,10 @@ input[type=file]{
 
 }
 
+#Email_List{
+    color:#fcfaf2;
+    font-family: "Neuton";
+    font-size: calc(10px + 1.6vmin);
+    position:absolute; 
+    height:300px;
+}
