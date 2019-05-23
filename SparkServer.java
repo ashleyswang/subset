@@ -62,7 +62,7 @@ public class SparkServer {
         });
 
         post("/dboutput", (req, res) -> {
-            String user = req.body();
+            String user = req.queryParams("email");
 
             Database database = new Database();
             database.getDatabase();
