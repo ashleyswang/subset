@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -12,7 +13,7 @@ import java.io.BufferedReader; // for inputsteam to string
 import java.nio.charset.StandardCharsets;
 
 import static spark.Spark.*;
-import org.json.json;
+import org.json.*;
 
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
@@ -21,6 +22,7 @@ public class SparkServer {
 
     public static void main(String[] args){
         port(8000);
+        staticFiles.location("/Web Stuff");
         get("/hello", (req, res) -> "Hello World");
 
         post("/ocr", (req, res) -> {
@@ -46,13 +48,13 @@ public class SparkServer {
 
         post("/dbinput", (req, res) -> {
             // extract from req
-            String key; 
-            String input;
+            String user = req.queryParams("email"); 
+            String input = req.queryParams("code");
 
             Database database = new Database();
             database.getDatabase();
 
-            database.addEntry(key, input);
+            database.addEntry(user, input);
             database.saveDatabase();
 
             res.header("Access-Control-Allow-Origin", "*");
@@ -60,16 +62,29 @@ public class SparkServer {
         });
 
         post("/dboutput", (req, res) -> {
-            // extract from req
-            String key = req.body();
+            String user = req.body();
 
             Database database = new Database();
             database.getDatabase();
 
-            JSONArray ja = new JSONArray(database.getAllFiles());
+            JSONArray ja = new JSONArray(database.getAllFiles(user));
 
             res.header("Access-Control-Allow-Origin", "*");
             return ja.toString();
+        });
+
+        post("/compiler", (req, res) -> {
+            String input = req.queryParams("code");
+            Exporter.exportAs(input);
+            Compiler compiler = new Compiler();
+            String fileName = compiler.FindFileName(input);41 t5
+            compiler.compile(fileName);
+            String response = compiler.run(fileName);
+
+            res.header("Access-Control-Allow-Origin", "*");
+            return response;
+
+            //return input;
         });
     }
 
