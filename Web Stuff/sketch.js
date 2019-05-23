@@ -1,3 +1,13 @@
+function open_popup(id) {
+    $('#screen').show()
+    $(id).show()
+}
+
+function close_popup(id) {
+    $('#screen').hide()
+    $(id).hide()
+}
+
 window.onload = function() {
     var editor = ace.edit("editor");
     editor.session.setMode('ace/mode/java');
@@ -76,7 +86,7 @@ window.onload = function() {
             method: 'POST',
             data: {
                 email: $('#Email_List input').val(),
-                code: JSON.stringify(editor.getValue())
+                code: editor.getValue()
             },
             success: function(data, status, xhr) {
                 alert("File successfully saved to database!")
@@ -96,12 +106,33 @@ window.onload = function() {
             },
             success: function(data, status, xhr) {
                 console.log(data)
+
+                
+                var list = $('#results ul')
                 var json = JSON.parse(data)
+                list.children().remove()
+
+                json.forEach(result => {
+                    var el = $('<li></li>')
+                    el.text(result)
+                    list.append(el)
+                })
+
+                open_popup('#results')
             },
             error: function(data, status, xhr) {
                 alert("Unsuccessful lookup. Sucks to suck.")
             }
         })
+    })
+
+    $('#results').on('click', 'li', function(event) {
+        editor.setValue($(this).text(), -1)
+        close_popup('#results')
+    })
+
+    $('#results label').on('click', function(event) {
+        close_popup('#results')
     })
 
     $('#compiler').on('click', function(event) {
