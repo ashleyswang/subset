@@ -82,6 +82,7 @@ public class SparkServer {
 
             compiler.compile(fileName);
             String response = compiler.run(fileName);
+            compiler.deleteExecutable(fileName);
 
             res.header("Access-Control-Allow-Origin", "*");
             return response;
