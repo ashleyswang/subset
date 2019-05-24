@@ -1,3 +1,13 @@
+function open_popup(id) {
+    $('#screen').show()
+    $(id).show()
+}
+
+function close_popup(id) {
+    $('#screen').hide()
+    $(id).hide()
+}
+
 window.onload = function() {
     var editor = ace.edit("editor");
     editor.session.setMode('ace/mode/java');
@@ -38,7 +48,7 @@ window.onload = function() {
                 //alert('Yay!')
             },
             error: function(data, status, xhr) {
-                alert('F***!')
+                alert('Unable to connect to server.')
             }
         })
     })
@@ -69,4 +79,77 @@ window.onload = function() {
             window.URL.revokeObjectURL(href)
         }, 0)
     })
+
+    $('#DBInput').on('click', function(event) {
+        jQuery.ajax({
+            url:  'http://localhost:8000/dbinput',
+            method: 'POST',
+            data: {
+                email: $('#Email_List input').val(),
+                code: editor.getValue()
+            },
+            success: function(data, status, xhr) {
+                alert("File successfully saved to database!")
+            },
+            error: function(data, status, xhr) {
+                alert("Unsuccessful save.")
+            }
+        })
+    })
+
+    $('#DBOutput').on('click', function(event) {
+        jQuery.ajax({
+            url:  'http://localhost:8000/dboutput',
+            method: 'POST',
+            data: {
+                email: $('#Email_List input').val(),
+            },
+            success: function(data, status, xhr) {
+                console.log(data)
+
+                
+                var list = $('#results ul')
+                var json = JSON.parse(data)
+                list.children().remove()
+
+                json.forEach(result => {
+                    var el = $('<li></li>')
+                    el.text(result)
+                    list.append(el)
+                })
+
+                open_popup('#results')
+            },
+            error: function(data, status, xhr) {
+                alert("Unsuccessful lookup. Sucks to suck.")
+            }
+        })
+    })
+
+    $('#results').on('click', 'li', function(event) {
+        editor.setValue($(this).text(), -1)
+        close_popup('#results')
+    })
+
+    $('#results label').on('click', function(event) {
+        close_popup('#results')
+    })
+
+    $('#compiler').on('click', function(event) {
+        jQuery.ajax({
+            url:  'http://localhost:8000/compiler',
+            method: 'POST',
+            data: {
+                code: editor.getValue()
+            },
+            success: function(data, status, xhr) {
+                console.log(data)
+                alert(data)
+            },
+            error: function(data, status, xhr) {
+                alert("someshiz.")
+            }
+        })
+    })
+
 }

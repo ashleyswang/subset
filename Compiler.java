@@ -30,9 +30,11 @@ public class Compiler {
             }
             r.waitFor();
             r.destroy();
-        } catch (Exception e) {}
-        return output;
-	}
+            return output;
+        } catch (Exception e) {
+            return e.toString();
+        }
+  }
 
   public String FindFileName(String fileText){
     String fileName = new String();

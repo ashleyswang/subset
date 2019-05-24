@@ -62,7 +62,7 @@ public class SparkServer {
         });
 
         post("/dboutput", (req, res) -> {
-            String user = req.body();
+            String user = req.queryParams("email");
 
             Database database = new Database();
             database.getDatabase();
@@ -77,6 +77,7 @@ public class SparkServer {
             String input = req.queryParams("code");
             Exporter.exportAs(input);
             Compiler compiler = new Compiler();
+
             String fileName = compiler.FindFileName(input);41 t5
             compiler.compile(fileName);
             String response = compiler.run(fileName);
