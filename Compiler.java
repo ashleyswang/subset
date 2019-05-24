@@ -57,10 +57,21 @@ public class Compiler {
     return fileName;
   }
 
+    public void deleteExecutable(String fileName){
+        Process r;
+        try {
+            r = Runtime.getRuntime().exec("rm " + fileName + ".class");
+            r.waitFor();
+            r.destroy();
+        } catch (Exception e) {
+            //return e.toString();
+        }
+  }
+
 
     public static void main(String args[]) {
         Compiler compiler = new Compiler();
-       	/*String fileName = "CompilerTest";
+       	String fileName = "CompilerTest";
        	try{
        		compiler.compile(fileName);
        	}
@@ -68,9 +79,10 @@ public class Compiler {
        		System.out.println("Compilation error");
        	}
        	System.out.print(compiler.run(fileName));
-        */
+        
         String text = "import java.util.Stack;public class Format{public String formatText(String unformatted){";
         System.out.println(compiler.FindFileName(text));
+        compiler.deleteExecutable(fileName);
 
     }
     
