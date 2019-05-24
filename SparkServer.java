@@ -77,8 +77,10 @@ public class SparkServer {
             String input = req.queryParams("code");
             Exporter.exportAs(input);
             Compiler compiler = new Compiler();
-            compiler.compile("Hello");
-            String response = compiler.run("Hello");
+
+            String fileName = compiler.FindFileName(input);41 t5
+            compiler.compile(fileName);
+            String response = compiler.run(fileName);
 
             res.header("Access-Control-Allow-Origin", "*");
             return response;
