@@ -87,12 +87,12 @@ public class SparkServer {
 
             res.header("Access-Control-Allow-Origin", "*");
             
-            if (runtimeResponse.equals("")){
-                return compilerResponse;
+            if (runtimeResponse.replaceAll("\\s","").equals("")){
+                return "Compile Time Error";
             } else {
                 return runtimeResponse;
             }
-            
+
         });
     }
 
