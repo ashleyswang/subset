@@ -80,14 +80,19 @@ public class SparkServer {
             String fileName = compiler.FindFileName(input);
             Exporter.exportAs(input, fileName);
 
-            compiler.compile(fileName);
-            String response = compiler.run(fileName);
+            String compilerResponse = compiler.compile(fileName);
+            String runtimeResponse = compiler.run(fileName);
+
             compiler.deleteExecutable(fileName);
 
             res.header("Access-Control-Allow-Origin", "*");
-            return response;
-
-            //return input;
+            
+            if (runtimeResponse.equals("")){
+                return compilerResponse;
+            } else {
+                return runtimeResponse;
+            }
+            
         });
     }
 

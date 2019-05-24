@@ -128,7 +128,7 @@ public class Format{
 			// semicolons
 			else if(ch == ';'){
 				formatted += ";";
-				if (brackets.peek() == (Character) '{'){
+				if (!brackets.isEmpty() && brackets.peek() == (Character) '{'){
 					formatted+= "\n";
 					// if next non white space character is }
 					// while(" \n\t".indexOf(unformatted.charAt(j+1))!= -1){
@@ -139,16 +139,19 @@ public class Format{
 						|| unformatted.charAt(j+3) == '}' || unformatted.charAt(j+4) == '}' 
 						|| unformatted.charAt(j+5) == '}'){
 						for(int i =1; i<brackets.size(); i++){
-                                                        formatted+="\t";
-                                                }
-                                        }else{
-                                                for(int i =0; i<brackets.size(); i++){
-                                                        formatted+="\t";
-                                                }
-                                        }
-                                }
-
+                            formatted+="\t";
                         }
+                    }else{
+                        for(int i =0; i<brackets.size(); i++){
+                            formatted+="\t";
+                        }
+                    }
+                } if (brackets.isEmpty()){
+                	formatted +="\n";
+                }
+
+            }
+
 
 		
 
