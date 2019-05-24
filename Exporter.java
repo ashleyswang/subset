@@ -3,14 +3,14 @@ import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 
 public class Exporter{
-	public static void exportAs(String input){
+	public static void exportAs(String input, String fileName){
 		// outfile is the name of the file to be downloaded from user
 	
 		PrintWriter outfile = null;
 		// unformattedCode = textdetectionAPI.detectText(filePathway);
 	
 		try{
-		    outfile = new PrintWriter("Hello.java");
+		    outfile = new PrintWriter(fileName+".java");
 		    for(char ch: input.toCharArray()){
 				outfile.append(ch);
 		    }

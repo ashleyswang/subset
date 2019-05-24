@@ -75,10 +75,11 @@ public class SparkServer {
 
         post("/compiler", (req, res) -> {
             String input = req.queryParams("code");
-            Exporter.exportAs(input);
+            
             Compiler compiler = new Compiler();
-
             String fileName = compiler.FindFileName(input);
+            Exporter.exportAs(input, fileName);
+
             compiler.compile(fileName);
             String response = compiler.run(fileName);
 
