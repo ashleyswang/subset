@@ -109,13 +109,13 @@ input[type=file]{
     font-size: calc(10px + 1.6vmin);
     position:absolute; 
     left: 4%;
-    top: 58vmin;
+    top: 70vmin;
 }
 
 .DBinput_Output{
     position:absolute;
-    left: 30%;
-    top: 10vmin;
+    left: 34%;
+    top: 14vmin;
 }
 
 #screen {

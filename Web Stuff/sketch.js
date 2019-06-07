@@ -121,7 +121,7 @@ window.onload = function() {
                 open_popup('#results')
             },
             error: function(data, status, xhr) {
-                alert("Unsuccessful lookup. Sucks to suck.")
+                alert("lookup unsuccessful")
             }
         })
     })
@@ -147,7 +147,7 @@ window.onload = function() {
                 alert(data)
             },
             error: function(data, status, xhr) {
-                alert("someshiz.")
+                alert("code does not compile")
             }
         })
     })
