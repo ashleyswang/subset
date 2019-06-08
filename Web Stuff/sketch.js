@@ -41,7 +41,7 @@ window.onload = function() {
         jQuery.ajax({
             url:  'http://localhost:8000/format',
             method: 'POST',
-            data: JSON.stringify(editor.getValue()),
+            data: JSON.stringify(editor.getValue()+"\n"),
             processData: false,
             success: function(data, status, xhr) {
                 editor.setValue(data)
